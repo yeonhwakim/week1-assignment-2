@@ -60,7 +60,7 @@ function clickOperator(setting, operator) {
     current: calculation,
     reset: true,
     operator,
-    calculation,
+    calculation: operator === '=' ? 0 : calculation,
   };
 }
 
@@ -75,10 +75,11 @@ function clickResult(setting) {
 }
 
 function render(setting) {
+  const { current } = setting;
   const element = (
     <div>
       <p>간단 계산기</p>
-      <p>{setting.current}</p>
+      <p>{current}</p>
       <p>
         {[...Array(10).keys()].map((number) => (
           <button
@@ -90,7 +91,7 @@ function render(setting) {
         ))}
       </p>
       <p>
-        {['+', '-', '*', '/'].map((operator) => (
+        {['+', '-', '*', '/', '='].map((operator) => (
           <button
             type="button"
             onClick={() => render(clickOperator(setting, operator))}
@@ -98,7 +99,6 @@ function render(setting) {
             {operator}
           </button>
         ))}
-        <button type="button" onClick={() => render(clickResult(setting))}> = </button>
       </p>
     </div>
   );
