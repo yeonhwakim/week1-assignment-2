@@ -64,16 +64,6 @@ function clickOperator(setting, operator) {
   };
 }
 
-function clickResult(setting) {
-  const { calculation } = setting;
-  return {
-    current: calculation,
-    reset: true,
-    operator: '=',
-    calculation: 0,
-  };
-}
-
 function render(setting) {
   const { current } = setting;
   const element = (
